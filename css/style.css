@@ -1,0 +1,530 @@
+/* Custom CSS for Portfolio Website - Elegant Theme with 60-30-10 Rule */
+
+/* Variables - Elegant Theme
+   60% - Gunmetal (#2A3439)
+   30% - Ivory (#F9F9F9)
+   10% - Gold (#FFD700)
+*/
+:root {
+  --color-main: #2C3E50;    /* Charcoal - 60% */
+  --color-secondary: #F9F9F9; /* 30% - Ivory */
+  --color-accent: #66FCF1;  /* New accent color - 10% */
+  --color-text: #FFFFFF;    /* White - 30% */
+  --color-text-muted: #B8B8B8;/* Muted text color */
+  --color-card: #333B40;      /* Card background */
+  --color-footer: #1A1E21;    /* Footer color */
+}
+
+/* General Styles */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: transparent;
+  color: var(--color-text);
+  font-family: 'Inter', 'Segoe UI', sans-serif;
+  background-image: url('../img/background.jpg');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  position: relative;
+}
+
+/* Add subtle overlay to ensure content readability */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(42, 52, 57, 0.75); /* Gunmetal with 75% opacity */
+  z-index: -1;
+}
+
+/* Override Bulma colors for elegant theme */
+.navbar.is-primary {
+  background: linear-gradient(135deg, rgba(42, 52, 57, 0.75) 0%, rgba(51, 59, 64, 0.75) 100%) !important;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+}
+
+.hero.is-fullheight-with-navbar {
+  background: linear-gradient(135deg, rgba(42, 52, 57, 0.75) 0%, rgba(51, 59, 64, 0.75) 100%);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+}
+
+.section {
+  background-color: transparent !important;
+  position: relative;
+}
+
+.section.has-background-light {
+  background: linear-gradient(135deg, rgba(42, 52, 57, 0.75) 0%, rgba(51, 59, 64, 0.75) 100%) !important;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  color: var(--color-text) !important;
+}
+
+.section.has-background-primary-light {
+  background: linear-gradient(135deg, rgba(42, 52, 57, 0.75) 0%, rgba(51, 59, 64, 0.75) 100%) !important;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  color: var(--color-text) !important;
+}
+
+.title, .subtitle {
+  color: var(--color-text) !important;
+}
+
+.box, .card {
+  background: linear-gradient(135deg, rgba(42, 52, 57, 0.75) 0%, rgba(51, 59, 64, 0.75) 100%) !important;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  color: var(--color-text) !important;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.card-footer-item {
+  color: var(--color-accent) !important;
+  background-color: transparent !important;
+}
+
+.button.is-primary {
+  background-color: rgba(102, 252, 241, 0.8) !important;
+  color: var(--color-main) !important;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
+
+.button.is-primary:hover {
+  background-color: rgba(92, 232, 221, 0.85) !important;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(102, 252, 241, 0.3);
+}
+
+.button.is-link {
+  background-color: transparent !important;
+  border: 2px solid var(--color-accent) !important;
+  color: var(--color-accent) !important;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
+
+.button.is-link:hover {
+  background-color: rgba(102, 252, 241, 0.8) !important;
+  color: var(--color-main) !important;
+  box-shadow: 0 4px 12px rgba(102, 252, 241, 0.3);
+}
+
+.button.is-warning {
+  background-color: rgba(102, 252, 241, 0.8) !important;
+  color: var(--color-main) !important;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
+
+.button.is-warning:hover {
+  background-color: rgba(92, 232, 221, 0.85) !important;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(102, 252, 241, 0.3);
+}
+
+.footer {
+  background: linear-gradient(135deg, rgba(42, 52, 57, 0.75) 0%, rgba(51, 59, 64, 0.75) 100%) !important;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  color: var(--color-text-muted);
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.tag.is-primary {
+  background-color: rgba(102, 252, 241, 0.8) !important;
+  color: var(--color-main) !important;
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
+
+/* Text colors */
+.text-accent {
+  color: var(--color-accent) !important;
+}
+
+/* Form elements */
+.input, .textarea {
+  background: linear-gradient(135deg, rgba(42, 52, 57, 0.75) 0%, rgba(51, 59, 64, 0.75) 100%) !important;
+  color: var(--color-text) !important;
+  border-color: var(--color-accent) !important;
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
+
+.input:focus, .textarea:focus {
+  border-color: var(--color-accent) !important;
+  box-shadow: 0 0 0 0.125em rgba(102, 252, 241, 0.25) !important;
+  background: linear-gradient(135deg, rgba(42, 52, 57, 0.85) 0%, rgba(51, 59, 64, 0.85) 100%) !important;
+}
+
+.label {
+  color: var(--color-text) !important;
+}
+
+/* Fix for Tailwind/Bulma conflicts */
+.container {
+  width: auto !important;
+  max-width: 1200px !important;
+  margin: 0 auto !important;
+}
+
+.column {
+  padding: 0.75rem !important;
+}
+
+.button {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+/* Profile Image */
+.profile-image {
+  max-width: 300px !important;
+  border: 5px solid rgba(102, 252, 241, 0.8) !important;
+  border-radius: 50% !important;
+  filter: drop-shadow(0 10px 8px rgba(0, 0, 0, 0.5));
+  transition: transform 0.5s ease, filter 0.5s ease;
+  box-shadow: 0 4px 12px rgba(102, 252, 241, 0.3);
+}
+
+.profile-image:hover {
+  transform: scale(1.05);
+  filter: drop-shadow(0 15px 15px rgba(0, 0, 0, 0.7));
+}
+
+/* GSAP Animation Classes */
+.gsap-fade-in {
+  opacity: 0;
+}
+
+.gsap-fade-in-delay-1 {
+  opacity: 0;
+}
+
+.gsap-fade-in-delay-2 {
+  opacity: 0;
+}
+
+.gsap-fade-in-delay-3 {
+  opacity: 0;
+}
+
+.gsap-slide-right {
+  opacity: 0;
+  transform: translateX(-50px);
+}
+
+.gsap-slide-left {
+  opacity: 0;
+  transform: translateX(50px);
+}
+
+.gsap-slide-up {
+  opacity: 0;
+  transform: translateY(30px);
+}
+
+.gsap-skill-item {
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.gsap-project-item {
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.gsap-reveal, .gsap-reveal-delay-1, .gsap-reveal-delay-2 {
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.gsap-bounce {
+  animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-20px);
+  }
+  60% {
+    transform: translateY(-10px);
+  }
+}
+
+.gsap-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+/* Project card overlay */
+.card-image {
+  position: relative;
+  overflow: hidden;
+}
+
+.card-image-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, rgba(42, 52, 57, 0.75) 0%, rgba(51, 59, 64, 0.75) 100%);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.card:hover .card-image-overlay {
+  opacity: 1;
+}
+
+.overlay-content {
+  transform: translateY(20px);
+  transition: transform 0.3s ease;
+}
+
+.card:hover .overlay-content {
+  transform: translateY(0);
+}
+
+/* Animated underline for navbar items */
+.navbar-item {
+  position: relative;
+  color: var(--color-text) !important;
+}
+
+.navbar-item::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  background-color: var(--color-accent);
+  transition: width 0.3s ease;
+}
+
+.navbar-item:hover::after,
+.navbar-item:focus::after {
+  width: 100%;
+}
+
+/* Custom utility classes */
+.h-full {
+  height: 100%;
+}
+
+/* Hover effects for project cards */
+.card {
+  transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), 
+              box-shadow 0.4s ease;
+  overflow: hidden;
+}
+
+.card:hover {
+  transform: translateY(-15px) scale(1.02);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+}
+
+.card-image figure {
+  overflow: hidden;
+  border-radius: 8px 8px 0 0;
+}
+
+.card-image img {
+  transition: transform 0.5s ease;
+}
+
+.card:hover .card-image img {
+  transform: scale(1.1);
+}
+
+/* Skill box hover effects */
+.box.has-text-centered {
+  transition: transform 0.4s ease, box-shadow 0.4s ease, background-color 0.4s ease;
+}
+
+.box.has-text-centered:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+  background-color: var(--color-secondary);
+}
+
+/* Social links hover effects */
+.social-links a {
+  transition: transform 0.3s ease, background-color 0.3s ease;
+  background: linear-gradient(135deg, rgba(42, 52, 57, 0.75) 0%, rgba(51, 59, 64, 0.75) 100%) !important;
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  border: none;
+}
+
+.social-links a:hover {
+  background-color: rgba(102, 252, 241, 0.8) !important;
+  transform: translateY(-3px);
+  box-shadow: 0 4px 12px rgba(102, 252, 241, 0.3);
+}
+
+.social-links a:hover i {
+  color: var(--color-main) !important;
+}
+
+/* Button hover effects */
+.button {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 7px 14px rgba(0, 0, 0, 0.3);
+}
+
+/* Hero icon animation */
+.hero-footer .icon {
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.hero-footer .icon:hover {
+  transform: translateY(5px);
+  color: var(--color-text);
+}
+
+/* Custom styling for mobile */
+@media screen and (max-width: 1023px) {
+  .navbar-menu.is-active {
+    background-color: var(--color-secondary);
+  }
+  
+  .navbar-burger {
+    color: var(--color-text);
+  }
+  
+  .navbar-burger span {
+    background-color: var(--color-text);
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .profile-image {
+    max-width: 200px;
+  }
+  
+  .hero-body {
+    padding: 3rem 1.5rem;
+  }
+  
+  .section {
+    padding: 3rem 1.5rem;
+  }
+  
+  .columns {
+    margin-left: 0;
+    margin-right: 0;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .title.is-1 {
+    font-size: 2.5rem;
+  }
+  
+  .subtitle.is-3 {
+    font-size: 1.5rem;
+  }
+  
+  .profile-image {
+    max-width: 150px;
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-main);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-secondary);
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-accent);
+}
+
+/* Certifications Section Styles */
+.gsap-certification-item {
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.card-image figure {
+  overflow: hidden;
+  border-radius: 8px 8px 0 0;
+}
+
+.card-image img {
+  transition: transform 0.5s ease;
+}
+
+.card:hover .card-image img {
+  transform: scale(1.05);
+}
+
+.card-footer-item {
+  transition: all 0.3s ease;
+}
+
+.card-footer-item:hover {
+  background-color: var(--color-accent) !important;
+  color: var(--color-main) !important;
+}
+
+/* Add hover effect for certification cards */
+.card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+} 
