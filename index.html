@@ -1,0 +1,2054 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Portfolio</title>
+    <!-- Bulma CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- GSAP for animations -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/TextPlugin.min.js"></script>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/tailwind.css">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+
+        /* Mobile Navigation Styles */
+        @media screen and (max-width: 768px) {
+            .navbar-menu {
+                position: absolute;
+                width: 100%;
+                background: #fff;
+                box-shadow: 0 8px 16px rgba(10, 10, 10, 0.1);
+            }
+            
+            .navbar-menu.is-active {
+                animation: slideDown 0.3s ease-out;
+            }
+
+            .navbar-item {
+                padding: 1rem;
+                text-align: center;
+                border-bottom: 1px solid #eee;
+            }
+
+            .navbar-burger {
+                margin-right: 0.5rem;
+            }
+        }
+
+        @keyframes slideDown {
+            from {
+                transform: translateY(-10px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        /* Mobile Hero Section Styles */
+        @media screen and (max-width: 768px) {
+            .hero-body {
+                padding: 2rem 1rem;
+            }
+
+            .hero-body .title.is-1 {
+                font-size: 2rem !important;
+                text-align: center;
+            }
+
+            .hero-body .subtitle.is-3 {
+                font-size: 1.5rem !important;
+                text-align: center;
+            }
+
+            .hero-body .buttons {
+                justify-content: center;
+            }
+
+            .profile-image {
+                max-width: 250px;
+                margin: 2rem auto;
+                border-radius: 15px;
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            }
+        }
+
+        /* Mobile Skills Section Styles */
+        @media screen and (max-width: 768px) {
+            .is-scrollable {
+                padding: 0.5rem;
+                margin: 0 -1rem;
+            }
+
+            .skill-box {
+                min-height: 200px;
+                margin: 0.5rem;
+                transition: transform 0.3s ease;
+            }
+
+            .skill-box:active {
+                transform: scale(0.98);
+            }
+
+            .skill-box .icon {
+                margin-bottom: 1rem;
+            }
+
+            .skill-box h3 {
+                font-size: 1.2rem !important;
+                margin-bottom: 0.5rem !important;
+            }
+
+            .skill-box p {
+                font-size: 0.9rem;
+                line-height: 1.4;
+            }
+        }
+
+        /* Mobile Projects Section Styles */
+        @media screen and (max-width: 768px) {
+            .card {
+                margin-bottom: 2rem;
+                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+                transition: transform 0.3s ease;
+                border-radius: 24px !important;
+                overflow: hidden;
+            }
+
+            .card:active {
+                transform: scale(0.98);
+            }
+
+            .card-image {
+                position: relative;
+                overflow: hidden;
+            }
+
+            .card-image img {
+                max-width: 100%;
+                height: auto;
+                display: block;
+                filter: blur(4px);
+                transition: filter 0.3s ease;
+            }
+
+            .card-content {
+                padding: 1.5rem;
+            }
+
+            .card-content .title {
+                font-size: 1.5rem !important;
+                margin-bottom: 0.5rem !important;
+            }
+
+            .card-content .subtitle {
+                font-size: 1rem !important;
+                margin-bottom: 1rem !important;
+            }
+
+            .card-content .content p {
+                display: -webkit-box;
+                -webkit-line-clamp: 4;
+                -webkit-box-orient: vertical;
+                overflow: hidden;
+                white-space: normal;
+                overflow-wrap: break-word;
+                word-break: break-word;
+                min-height: 3.6em;
+            }
+
+            .card-footer {
+                border-top: 1px solid #f0f0f0;
+            }
+
+            .card-footer-item {
+                padding: 1rem;
+                font-weight: 500;
+            }
+        }
+
+        /* Mobile Contact Section Styles */
+        @media screen and (max-width: 768px) {
+            .contact-form {
+                padding: 1rem;
+            }
+
+            .field {
+                margin-bottom: 1.5rem;
+            }
+
+            .label {
+                font-size: 0.9rem;
+                margin-bottom: 0.5rem;
+            }
+
+            .input, .textarea {
+                font-size: 1rem;
+                padding: 0.75rem;
+            }
+
+            .social-links {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 0.5rem;
+            }
+
+            .social-button {
+                min-width: 140px;
+                margin: 0.25rem !important;
+            }
+
+            .social-button .icon {
+                margin-right: 0.5rem;
+            }
+
+            .social-text {
+                font-size: 0.9rem;
+            }
+        }
+
+        /* General Mobile Improvements */
+        @media screen and (max-width: 768px) {
+            .section {
+                padding: 3rem 1rem;
+            }
+
+            .title.is-2 {
+                font-size: 2rem !important;
+                margin-bottom: 2rem !important;
+            }
+
+            .container {
+                padding: 0 1rem;
+            }
+
+            .box {
+                padding: 1.5rem;
+                margin: 1rem 0;
+            }
+        }
+
+        /* Skill Box Styling */
+        .skill-box {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            white-space: normal;
+            word-wrap: break-word;
+        }
+
+        .skill-box p {
+            overflow-wrap: break-word;
+            word-wrap: break-word;
+            hyphens: auto;
+            margin-bottom: 0;
+        }
+
+        /* Skill Heading Styling */
+        .skill-heading {
+            background: linear-gradient(45deg, #2c3e50, #3498db);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            margin-top: 1rem !important;
+        }
+
+        /* Social Media Buttons Styling */
+        .social-button {
+            transition: all 0.3s ease;
+            padding: 0.75rem 1.5rem;
+            margin: 0.5rem;
+            border: 2px solid var(--primary-color, #00d1b2);
+            background: transparent;
+            color: var(--primary-color, #00d1b2);
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .social-button:hover {
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 209, 178, 0.3);
+        }
+
+        .social-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0;
+            height: 100%;
+            background: var(--primary-color, #00d1b2);
+            transition: all 0.3s ease;
+            z-index: -1;
+        }
+
+        .social-button:hover::before {
+            width: 100%;
+        }
+
+        .social-button .icon {
+            margin-right: 8px;
+            font-size: 1.2em;
+        }
+
+        .social-button .social-text {
+            font-weight: 500;
+            letter-spacing: 0.5px;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        @media (max-width: 768px) {
+            .social-button {
+                padding: 0.5rem 1rem;
+                margin: 0.25rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+          .columns {
+            flex-direction: column !important;
+          }
+          .container, .section {
+            padding: 1rem !important;
+          }
+          .title, .subtitle {
+            font-size: 1.2rem !important;
+            text-align: center;
+          }
+        }
+
+        @media (max-width: 768px) {
+          .is-scrollable {
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            padding-bottom: 1rem;
+          }
+          .gsap-project-item {
+            width: 90vw !important;
+            min-width: 280px;
+            margin-bottom: 1.5rem;
+          }
+        }
+
+        /* Add styles for active navigation item */
+        .navbar-item.is-active {
+            background-color: rgba(255, 255, 255, 0.2) !important;
+            font-weight: bold !important;
+            color: #fff !important;
+        }
+
+        /* Smooth scroll behavior */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Adjust section padding to account for fixed header */
+        section {
+            scroll-margin-top: 52px; /* or height of your navbar */
+        }
+
+        /* Contact section styles */
+        .contact-heading {
+            opacity: 1 !important;
+            transform: none !important;
+        }
+
+        #contact .title.is-2 {
+            color: var(--color-text);
+            margin-bottom: 2rem !important;
+        }
+
+        #contact .text-accent {
+            background: linear-gradient(45deg, #2c3e50, #3498db);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            font-weight: 600;
+        }
+
+        .skill-tag {
+            font-size: 1.1rem;
+            letter-spacing: 1px;
+            font-weight: 600;
+            padding: 0.5em 1.5em;
+            border-radius: 999px;
+            background: linear-gradient(90deg, #2c3e50, #3498db);
+            color: #fff;
+            box-shadow: 0 2px 8px rgba(44, 62, 80, 0.08);
+            margin-bottom: 1rem;
+            display: inline-block;
+            transition: transform 0.2s;
+        }
+        .skill-tag:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 16px rgba(44, 62, 80, 0.15);
+        }
+
+        /* Remove card hover scaling */
+        .card:hover, .card:active {
+            transform: none !important;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1); /* or your default shadow */
+        }
+
+        /* Make overlay always visible */
+        .card-image-overlay {
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(44, 62, 80, 0.25); /* optional: for contrast */
+            z-index: 2;
+            opacity: 1 !important;
+            pointer-events: auto;
+            transition: none !important;
+        }
+
+        /* Ensure overlay content is centered and spaced */
+        .overlay-content {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .text-accent {
+            background: linear-gradient(45deg, #2c3e50, #3498db);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            font-weight: 600;
+        }
+        .title.is-2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        /* Consistent left alignment for all headings inside containers */
+        .container h1,
+        .container h2,
+        .container h3,
+        .container h4,
+        .container h5,
+        .container h6 {
+            text-align: left !important;
+            margin-left: 0;
+            margin-right: 0;
+            /* Optional: add consistent bottom margin for spacing */
+            margin-bottom: 2rem;
+            font-family: 'Inter', Arial, sans-serif;
+            font-weight: 700;
+            /* Optional: add a subtle left border or accent for emphasis */
+            /* border-left: 4px solid #3498db; */
+            /* padding-left: 1rem; */
+            opacity: 1 !important;
+            visibility: visible !important;
+            display: block !important;
+            z-index: 1;
+        }
+
+        /* Accent text styling for headings */
+        .text-accent {
+            background: linear-gradient(45deg, #2c3e50, #3498db);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            font-weight: 600;
+        }
+
+        /* Example: consistent font sizes for headings */
+        .container h1 { font-size: 3rem; }
+        .container h2 { font-size: 2.5rem; }
+        .container h3 { font-size: 2rem; }
+        .container h4 { font-size: 1.5rem; }
+        .container h5 { font-size: 1.2rem; }
+        .container h6 { font-size: 1rem; }
+
+        @media (max-width: 768px) {
+          .container h1,
+          .container h2,
+          .container h3,
+          .container h4,
+          .container h5,
+          .container h6 {
+            text-align: left !important;
+            font-size: 1.5rem !important;
+          }
+        }
+
+        @media (max-width: 768px) {
+          .container h1 { font-size: 2rem; }
+          .container h2 { font-size: 1.5rem; }
+          .container h3 { font-size: 1.2rem; }
+          body, .box, .card-content, .subtitle, .label, .input, .textarea {
+            font-size: 1rem;
+            line-height: 1.5;
+          }
+        }
+
+        @media (max-width: 768px) {
+          .columns {
+            flex-direction: column !important;
+          }
+          .container, .section {
+            padding: 1rem !important;
+          }
+          .box, .card {
+            margin: 0.5rem 0;
+            padding: 1rem !important;
+          }
+        }
+
+        @media (max-width: 768px) {
+          img, .profile-image, .card-image img {
+            max-width: 100%;
+            height: auto;
+          }
+          .card, .box {
+            border-radius: 16px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+          }
+        }
+
+        @media (max-width: 768px) {
+          .input, .textarea, .button {
+            width: 100%;
+            font-size: 1rem;
+            margin-bottom: 1rem;
+          }
+        }
+    </style>
+</head>
+<body class="has-navbar-fixed-top">
+    <!-- Navigation -->
+    <nav class="navbar is-fixed-top is-primary" role="navigation" aria-label="main navigation">
+        <div class="navbar-brand">
+            <a class="navbar-item !text-2xl !font-bold" href="#home">
+                <span class="text-accent">My</span>Portfolio
+            </a>
+            <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarMenu">
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+            </a>
+        </div>
+        <div id="navbarMenu" class="navbar-menu">
+            <div class="navbar-end">
+                <a class="navbar-item" href="#home">Home</a>
+                <a class="navbar-item" href="#about">About</a>
+                <a class="navbar-item" href="#skills">Skills</a>
+                <a class="navbar-item" href="#projects">Projects</a>
+                <a class="navbar-item" href="#contact">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero is-fullheight-with-navbar">
+        <div class="hero-body">
+            <div class="container !mx-auto">
+                <div class="columns is-vcentered">
+                    <div class="column">
+                        <h1 class="title is-1 gsap-fade-in">Hello, I'm <span class="text-accent gsap-text-animation">Yashraj Ghanvat</span></h1>
+                        <h2 class="subtitle is-3 gsap-fade-in-delay-1">
+                            <span class="gsap-typewriter">Web Developer & Designer</span>
+                        </h2>
+                        <div class="buttons gsap-fade-in-delay-2">
+                            <a href="#projects" class="button is-warning is-medium">
+                                <span><b>View My Work</b></span>
+                                <span class="icon !ml-2">
+                                    <i class="fas fa-arrow-right"></i>
+                                </span>
+                            </a>
+                            <a href="#contact" class="button is-light is-medium">
+                                <span class="icon !mr-2">
+                                    <i class="fas fa-envelope"></i>
+                                </span>
+                                <span><b>Contact Me</b></span>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="column has-text-centered gsap-fade-in-delay-3 is-flex is-justify-content-center is-align-items-center" style="min-height: 100%;">
+                        <div class="gsap-float">
+                            <img src="img/1.jpg" alt="Profile Image" class="profile-image !rounded-lg !shadow-lg" style="max-width: 280px; margin: 0 auto; display: block;" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="hero-footer py-5">
+            <div class="container has-text-centered">
+                <a href="#about" class="gsap-bounce">
+                    <span class="icon is-large text-accent">
+                        <i class="fas fa-chevron-down fa-2x"></i>
+                    </span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="section has-background-light">
+        <div class="container">
+            <h2 class="title is-2 !mb-6 gsap-fade-in">
+              About <span class="text-accent">Me</span>
+            </h2>
+            <div class="columns is-vcentered">
+                <div class="column is-4 has-text-centered">
+                    <figure class="image is-1by1 mx-auto gsap-fade-in" style="max-width: 300px;">
+                        <img class="is-rounded profile-image" src="img/profile.jpg" alt="Profile Image">
+                    </figure>
+                </div>
+                <div class="column is-8">
+                    <div class="box gsap-fade-in">
+                        <p class="mb-4">Hello!!!  I'm a passionate web developer with a strong foundation in modern web technologies.<br> I specialize in creating responsive, user-friendly websites and web applications that deliver exceptional user experiences.
+                        With expertise in HTML, CSS, JavaScript, and various modern frameworks, I strive to build efficient and scalable solutions that meet client needs while maintaining clean, maintainable code.</p>
+                        <p>&emsp;&emsp;&emsp;When I'm not coding, you can find me exploring new technologies, contributing to open-source projects, or sharing my knowledge through technical writing and mentoring.</p>
+                        <div class="has-text-centered" style="margin-top: 2.5rem;">
+                            <a href="img/resume.pdf" class="button is-primary is-normal" target="_blank" rel="noopener noreferrer">
+                                <span class="icon">
+                                    <i class="fas fa-eye"></i>
+                                </span>
+                                <span><b>View Resume</b></span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="section has-background-light">
+        <div class="container">
+            
+            <h2 class="title is-2 !mb-6 text-center gsap-fade-in">
+              My <span class="text-accent">Skills</span>
+            </h2>
+            <div class="is-scrollable hide-scrollbar" style="overflow-x: auto; white-space: nowrap; padding-bottom: 10px; scrollbar-width: none; -ms-overflow-style: none;">
+                <div class="columns is-multiline" style="display: inline-flex; flex-wrap: nowrap;">
+                    <!-- Skill 1 -->
+                    <div class="column is-6-mobile is-3-tablet is-3-desktop gsap-skill-item" style="flex: 0 0 auto; width: 300px;">
+                        <div class="box has-text-centered h-full !p-5 skill-box">
+                            <span class="icon is-large text-accent">
+                                <i class="fas fa-code fa-3x" style="color: #5e97d0;"></i>
+                            </span>
+                            <h3 class="title is-4 skill-heading">HTML/CSS</h3>
+                            <p>Creating semantic and responsive layouts with modern CSS techniques.</p>
+                        </div>
+                    </div>
+                    <!-- Skill 2 -->
+                    <div class="column is-6-mobile is-3-tablet is-3-desktop gsap-skill-item" style="flex: 0 0 auto; width: 300px;">
+                        <div class="box has-text-centered h-full !p-5 skill-box">
+                            <span class="icon is-large text-accent">
+                                <i class="fab fa-js fa-3x" style="color: #f7df1e;"></i>
+                            </span>
+                            <h3 class="title is-4 skill-heading">JavaScript</h3>
+                            <p>Building interactive user experiences with vanilla JS and frameworks.</p>
+                        </div>
+                    </div>
+                    <!-- Skill 3 -->
+                    <div class="column is-6-mobile is-3-tablet is-3-desktop gsap-skill-item" style="flex: 0 0 auto; width: 300px;">
+                        <div class="box has-text-centered h-full !p-5 skill-box">
+                            <span class="icon is-large text-accent">
+                                <i class="fab fa-angular fa-3x" style="color: #dd0031;"></i>
+                            </span>
+                            <h3 class="title is-4 skill-heading">Angular</h3>
+                            <p>Developing dynamic single-page applications with Angular framework.</p>
+                        </div>
+                    </div>
+                    <!-- Skill 4 -->
+                    <div class="column is-6-mobile is-3-tablet is-3-desktop gsap-skill-item" style="flex: 0 0 auto; width: 300px;">
+                        <div class="box has-text-centered h-full !p-5 skill-box">
+                            <span class="icon is-large text-accent">
+                                <i class="fas fa-mobile-alt fa-3x" style="color: #27ae60;"></i>
+                            </span>
+                            <h3 class="title is-4 skill-heading">Responsive Design</h3>
+                            <p>Creating websites that work perfectly on all devices and screen sizes.</p>
+                        </div>
+                    </div>
+                    <!-- Skill 5 -->
+                    <div class="column is-6-mobile is-3-tablet is-3-desktop gsap-skill-item" style="flex: 0 0 auto; width: 300px;">
+                        <div class="box has-text-centered h-full !p-5 skill-box">
+                            <span class="icon is-large text-accent">
+                                <i class="fab fa-python fa-3x" style="color: #3776ab;"></i>
+                            </span>
+                            <h3 class="title is-4 skill-heading">Python</h3>
+                            <p>Building robust applications and data analysis solutions.</p>
+                        </div>
+                    </div>
+                    <!-- Skill 6 -->
+                    <div class="column is-6-mobile is-3-tablet is-3-desktop gsap-skill-item" style="flex: 0 0 auto; width: 300px;">
+                        <div class="box has-text-centered h-full !p-5 skill-box">
+                            <span class="icon is-large text-accent">
+                                <i class="fas fa-database fa-3x" style="color: #f39c12;"></i>
+                            </span>
+                            <h3 class="title is-4 skill-heading">Data Structure</h3>
+                            <p>Implementing efficient data structures for optimized performance.</p>
+                        </div>
+                    </div>
+                    <!-- Skill 7 -->
+                    <div class="column is-6-mobile is-3-tablet is-3-desktop gsap-skill-item" style="flex: 0 0 auto; width: 300px;">
+                        <div class="box has-text-centered h-full !p-5 skill-box">
+                            <span class="icon is-large text-accent">
+                                <i class="fas fa-database fa-3x"></i>
+                            </span>
+                            <h3 class="title is-4 skill-heading">SQL</h3>
+                            <p>Managing and querying databases with SQL.</p>
+                        </div>
+                    </div>
+                    <!-- Skill 8 -->
+                    <div class="column is-6-mobile is-3-tablet is-3-desktop gsap-skill-item" style="flex: 0 0 auto; width: 300px;">
+                        <div class="box has-text-centered h-full !p-5 skill-box">
+                            <span class="icon is-large text-accent">
+                                <i class="fas fa-chart-bar fa-3x" style="color: #16a085;"></i>
+                            </span>
+                            <h3 class="title is-4 skill-heading">Data Visualization</h3>
+                            <p>Creating insightful visualizations to represent data effectively.</p>
+                        </div>
+                    </div>
+                    <!-- Skill 9 -->
+                    <div class="column is-6-mobile is-3-tablet is-3-desktop gsap-skill-item" style="flex: 0 0 auto; width: 300px;">
+                        <div class="box has-text-centered h-full !p-5 skill-box">
+                            <span class="icon is-large text-accent">
+                                <i class="fas fa-chart-line fa-3x" style="color: #11557c;"></i>
+                            </span>
+                            <h3 class="title is-4 skill-heading">Matplotlib</h3>
+                            <p>Using Matplotlib for advanced data plotting and visualization.</p>
+                        </div>
+                    </div>
+                    <!-- Skill 10 -->
+                    <div class="column is-6-mobile is-3-tablet is-3-desktop gsap-skill-item" style="flex: 0 0 auto; width: 300px;">
+                        <div class="box has-text-centered h-full !p-5 skill-box">
+                            <span class="icon is-large text-accent">
+                                <i class="fas fa-chart-pie fa-3x" style="color: #e67e22;"></i>
+                            </span>
+                            <h3 class="title is-4 skill-heading">Data Analysis</h3>
+                            <p>Performing in-depth data analysis to derive actionable insights.</p>
+                        </div>
+                    </div>
+                    <!-- Skill 11 -->
+                    <div class="column is-6-mobile is-3-tablet is-3-desktop gsap-skill-item" style="flex: 0 0 auto; width: 300px;">
+                        <div class="box has-text-centered h-full !p-5 skill-box">
+                            <span class="icon is-large text-accent">
+                                <i class="fas fa-chart-line fa-3x"></i>
+                            </span>
+                            <h3 class="title is-4 skill-heading">Power BI</h3>
+                            <p>Creating interactive dashboards and reports with Power BI.</p>
+                        </div>
+                    </div>
+                    <!-- Skill 12 -->
+                    <div class="column is-6-mobile is-3-tablet is-3-desktop gsap-skill-item" style="flex: 0 0 auto; width: 300px;">
+                        <div class="box has-text-centered h-full !p-5 skill-box">
+                            <span class="icon is-large text-accent">
+                                <i class="fab fa-html5 fa-3x" style="color: #e34f26;"></i>
+                            </span>
+                            <h3 class="title is-4 skill-heading">HTML</h3>
+                            <p>Building semantic and responsive web pages with HTML.</p>
+                        </div>
+                    </div>
+                    <!-- Skill 13 -->
+                    <div class="column is-6-mobile is-3-tablet is-3-desktop gsap-skill-item" style="flex: 0 0 auto; width: 300px;">
+                        <div class="box has-text-centered h-full !p-5 skill-box">
+                            <span class="icon is-large text-accent">
+                                <i class="fab fa-java fa-3x" style="color: #007396;"></i>
+                            </span>
+                            <h3 class="title is-4 skill-heading">Java</h3>
+                            <p>Developing robust applications with Java.</p>
+                        </div>
+                    </div>
+                    <!-- Skill 14 -->
+                    <div class="column is-6-mobile is-3-tablet is-3-desktop gsap-skill-item" style="flex: 0 0 auto; width: 300px;">
+                        <div class="box has-text-centered h-full !p-5 skill-box">
+                            <span class="icon is-large text-accent">
+                                <i class="fab fa-php fa-3x" style="color: #777bb4;"></i>
+                            </span>
+                            <h3 class="title is-4 skill-heading">PHP</h3>
+                            <p>Building dynamic web applications with PHP.</p>
+                        </div>
+                    </div>
+                    <!-- Skill 15 -->
+                    <div class="column is-6-mobile is-3-tablet is-3-desktop gsap-skill-item" style="flex: 0 0 auto; width: 300px;">
+                        <div class="box has-text-centered h-full !p-5 skill-box">
+                            <span class="icon is-large text-accent">
+                                <i class="fab fa-wordpress fa-3x" style="color: #21759b;"></i>
+                            </span>
+                            <h3 class="title is-4 skill-heading">WordPress</h3>
+                            <p>Creating and managing websites with WordPress.</p>
+                        </div>
+                    </div>
+                    <!-- Skill 16 -->
+                    <div class="column is-6-mobile is-3-tablet is-3-desktop gsap-skill-item" style="flex: 0 0 auto; width: 300px;">
+                        <div class="box has-text-centered h-full !p-5 skill-box">
+                            <span class="icon is-large text-accent">
+                                <i class="fas fa-code fa-3x" style="color: #004482;"></i>
+                            </span>
+                            <h3 class="title is-4 skill-heading">C</h3>
+                            <p>Writing efficient and low-level programs with C.</p>
+                        </div>
+                    </div>
+                    <!-- Skill 17 -->
+                    <div class="column is-6-mobile is-3-tablet is-3-desktop gsap-skill-item" style="flex: 0 0 auto; width: 300px;">
+                        <div class="box has-text-centered h-full !p-5 skill-box">
+                            <span class="icon is-large text-accent">
+                                <i class="fas fa-code fa-3x" style="color: #68217a;"></i>
+                            </span>
+                            <h3 class="title is-4 skill-heading">C#</h3>
+                            <p>Developing applications with C# and .NET framework.</p>
+                        </div>
+                    </div>
+                    <!-- Skill 18 -->
+                    <div class="column is-6-mobile is-3-tablet is-3-desktop gsap-skill-item" style="flex: 0 0 auto; width: 300px;">
+                        <div class="box has-text-centered h-full !p-5 skill-box">
+                            <span class="icon is-large text-accent">
+                                <i class="fab fa-python fa-3x" style="color: #3776ab;"></i>
+                            </span>
+                            <h3 class="title is-4 skill-heading">Django</h3>
+                            <p>Building scalable web applications with Django.</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Skill 20 -->
+                    <div class="column is-6-mobile is-3-tablet is-3-desktop gsap-skill-item" style="flex: 0 0 auto; width: 300px;">
+                        <div class="box has-text-centered h-full !p-5 skill-box">
+                            <span class="icon is-large text-accent">
+                                <i class="fas fa-code fa-3x" style="color: #512bd4;"></i>
+                            </span>
+                            <h3 class="title is-4 skill-heading">ASP.NET</h3>
+                            <p>Building web applications with ASP.NET.</p>
+                        </div>
+                    </div>
+                    <!-- Skill 21 -->
+                    
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="section has-background-light">
+        <div class="container">
+            <h2 class="title is-2 !mb-6 text-center gsap-fade-in">
+              My <span class="text-accent">Projects</span>
+            </h2>
+            <!-- Technology Filter Buttons -->
+            <div class="buttons is-centered mb-5" id="tech-filter">
+                <button class="button is-primary is-rounded filter-btn" data-tech="all"><b>All</b></button>
+                <button class="button is-primary is-rounded filter-btn" data-tech="Python"><b>Python</b></button>
+                <button class="button is-primary is-rounded filter-btn" data-tech="Artificial Intelligence"><b>Artificial Intelligence</b></button>
+                <button class="button is-primary is-rounded filter-btn" data-tech="Machine Learning"><b>Machine Learning</b></button>
+                <button class="button is-primary is-rounded filter-btn" data-tech="Deep Learning"><b>Deep Learning</b></button>
+                <button class="button is-primary is-rounded filter-btn" data-tech="Agentic AI"><b>Agentic AI</b></button>
+                <button class="button is-primary is-rounded filter-btn" data-tech="Power BI"><b>Power BI</b></button>
+            </div>
+            <!-- Project Cards Horizontal Scroll -->
+            <div class="is-scrollable hide-scrollbar" style="overflow-x: auto; white-space: nowrap; padding-bottom: 10px; scrollbar-width: none; -ms-overflow-style: none;">
+                <div class="columns is-multiline" style="display: inline-flex; flex-wrap: nowrap;">
+                    <!-- Move Power BI projects to the top -->
+                    <!-- Power BI Project 1 -->
+                    <div class="column is-12-mobile is-6-tablet is-4-desktop gsap-project-item" style="flex: 0 0 auto; width: 420px;" data-tech="Power BI">
+                        <div class="card h-full">
+                            <div class="card-image">
+                                <figure class="image is-4by3">
+                                    <img src="img/HR analytics .png" alt="HR Analytics Dashboard">
+                                </figure>
+                                <div class="card-image-overlay">
+                                    <div class="overlay-content">
+                                        <a href="img/updated_hr_analytics.pdf" class="button is-warning is-rounded" target="_blank">
+                                            <span class="icon">
+                                                <i class="fas fa-eye"></i>
+                                            </span>
+                                        </a>
+                                        <a href="https://github.com/YashrajGhanvat1475/Power-BI/tree/main/HR%20analytics" class="button is-warning is-rounded !ml-2" target="_blank">
+                                            <span class="icon">
+                                                <i class="fab fa-github"></i>
+                                            </span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-content">
+                                <p class="title is-4">HR Analytics Dashboard</p>
+                                <p class="subtitle is-6">Power BI Project</p>
+                                <div class="content">
+                                    <p>
+                                        This dashboard providing insights into<br> HR metrics.
+                                        Includes employee demo<br> graphics, attrition, and performance.
+                                        <br>
+                                    </p>
+                                    <div class="tags">
+                                        <span class="tag is-primary">Power BI</span>
+                                        <span class="tag is-primary">DAX</span>
+                                        <span class="tag is-primary">Power Query</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <footer class="card-footer">
+                                <a href="img/updated_hr_analytics.pdf" class="card-footer-item" target="_blank"><b>View Project</b></a>
+                                <a href="https://github.com/YashrajGhanvat1475/Power-BI/tree/main/HR%20analytics" class="card-footer-item" target="_blank"><b>Source Code</b></a>
+                            </footer>
+                        </div>
+                    </div>
+                    <!-- Power BI Project 2 -->
+                    <div class="column is-12-mobile is-6-tablet is-4-desktop gsap-project-item" style="flex: 0 0 auto; width: 420px;" data-tech="Power BI">
+                        <div class="card h-full">
+                            <div class="card-image">
+                                <figure class="image is-4by3">
+                                    <img src="img/Mobile sales dashboard .png" alt="Mobile Sales Dashboard">
+                                </figure>
+                                <div class="card-image-overlay">
+                                    <div class="overlay-content">
+                                        <a href="img/mobile sells dashboard.pdf" class="button is-warning is-rounded" target="_blank">
+                                            <span class="icon">
+                                                <i class="fas fa-eye"></i>
+                                            </span>
+                                        </a>
+                                        <a href="https://github.com/YashrajGhanvat1475/Power-BI/tree/main/Mobile%20Sales%20Dashboard" class="button is-warning is-rounded !ml-2" target="_blank">
+                                            <span class="icon">
+                                                <i class="fab fa-github"></i>
+                                            </span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-content">
+                                <p class="title is-4">Mobile Sales Dashboard</p>
+                                <p class="subtitle is-6">Power BI Project</p>
+                                <div class="content">
+                                    <p>This dashboard visualizing mobile sales<br> data, trends. Shows key performance<br> indicators for business analysis.</p>
+                                    <div class="tags">
+                                        <span class="tag is-primary">Power BI</span>
+                                        <span class="tag is-primary">DAX</span>
+                                        <span class="tag is-primary">Power Query</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <footer class="card-footer">
+                                <a href="img/mobile sells dashboard.pdf" class="card-footer-item" target="_blank"><b>View Project</b></a>
+                                <a href="https://github.com/YashrajGhanvat1475/Power-BI/tree/main/Mobile%20Sales%20Dashboard" class="card-footer-item" target="_blank"><b>Source Code</b></a>
+                            </footer>
+                        </div>
+                    </div>
+                    <!-- Power BI Project 3 -->
+                    <div class="column is-12-mobile is-6-tablet is-4-desktop gsap-project-item" style="flex: 0 0 auto; width: 420px;" data-tech="Power BI">
+                        <div class="card h-full">
+                            <div class="card-image">
+                                <figure class="image is-4by3">
+                                    <img src="img/mega mart dashboard.png" alt="Vishal Mega Mart">
+                                </figure>
+                                <div class="card-image-overlay">
+                                    <div class="overlay-content">
+                                        <a href="img/Mart Dashboard.pdf" class="button is-warning is-rounded" target="_blank">
+                                            <span class="icon">
+                                                <i class="fas fa-eye"></i>
+                                            </span>
+                                        </a>
+                                        <a href="https://github.com/YashrajGhanvat1475/Power-BI/tree/main/Vishal%20Mega%20Mart" class="button is-warning is-rounded !ml-2" target="_blank">
+                                            <span class="icon">
+                                                <i class="fab fa-github"></i>
+                                            </span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-content">
+                                <p class="title is-4">Vishal Mega Mart</p>
+                                <p class="subtitle is-6">Power BI Project</p>
+                                <div class="content">
+                                    <p>This project analyzing sales and<br> inventory data and helps drive  <br>data-driven decisions for the business.</p>
+                                    <div class="tags">
+                                        <span class="tag is-primary">Power BI</span>
+                                        <span class="tag is-primary">DAX</span>
+                                        <span class="tag is-primary">Power Query</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <footer class="card-footer">
+                                <a href="img/Mart Dashboard.pdf" class="card-footer-item" target="_blank"><b>View Project</b></a>
+                                <a href="https://github.com/YashrajGhanvat1475/Power-BI/tree/main/Vishal%20Mega%20Mart" class="card-footer-item" target="_blank"><b>Source Code</b></a>
+                            </footer>
+                        </div>
+                    </div>
+                    <!-- Then keep all the placeholder/empty project cards below -->
+                    <!-- Project 1 -->
+                    <div class="column is-12-mobile is-6-tablet is-4-desktop gsap-project-item" style="flex: 0 0 auto; width: 420px;" data-tech="HTML,CSS,JavaScript,Angular,TypeScript,SCSS,React,Node.js,MongoDB">
+                        <div class="card h-full">
+                            <div class="card-image">
+                                <figure class="image is-4by3">
+                                    <img src="img/project1-placeholder.jpg" alt="Project 1">
+                                </figure>
+                                <div class="card-image-overlay">
+                                    <div class="overlay-content">
+                                        <a href="#" class="button is-warning is-rounded">
+                                            <span class="icon">
+                                                <i class="fas fa-eye"></i>
+                                            </span>
+                                        </a>
+                                        <a href="#" class="button is-warning is-rounded !ml-2">
+                                            <span class="icon">
+                                                <i class="fab fa-github"></i>
+                                            </span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-content">
+                                <p class="title is-4">Project One</p>
+                                <p class="subtitle is-6">Full Stack App</p>
+                                <div class="content">
+                                    <p>A description of your fourth project and what technologies you used.</p>
+                                    <div class="tags">
+                                        <span class="tag is-primary">HTML</span>
+                                        <span class="tag is-primary">CSS</span>
+                                        <span class="tag is-primary">JavaScript</span>
+                                        <span class="tag is-primary">Angular</span>
+                                        <span class="tag is-primary">TypeScript</span>
+                                        <span class="tag is-primary">SCSS</span>
+                                        <span class="tag is-primary">React</span>
+                                        <span class="tag is-primary">Node.js</span>
+                                        <span class="tag is-primary">MongoDB</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <footer class="card-footer">
+                                <a href="#" class="card-footer-item">View Project</a>
+                                <a href="#" class="card-footer-item">Source Code</a>
+                            </footer>
+                        </div>
+                    </div>
+                    <!-- Project 2 -->
+                    <div class="column is-12-mobile is-6-tablet is-4-desktop gsap-project-item" style="flex: 0 0 auto; width: 420px;" data-tech="HTML,CSS,JavaScript,Angular,TypeScript,SCSS,React,Node.js,MongoDB">
+                        <div class="card h-full">
+                            <div class="card-image">
+                                <figure class="image is-4by3">
+                                    <img src="img/project1-placeholder.jpg" alt="Project 2">
+                                </figure>
+                                <div class="card-image-overlay">
+                                    <div class="overlay-content">
+                                        <a href="#" class="button is-warning is-rounded">
+                                            <span class="icon">
+                                                <i class="fas fa-eye"></i>
+                                            </span>
+                                        </a>
+                                        <a href="#" class="button is-warning is-rounded !ml-2">
+                                            <span class="icon">
+                                                <i class="fab fa-github"></i>
+                                            </span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-content">
+                                <p class="title is-4">Project Two</p>
+                                <p class="subtitle is-6">Full Stack App</p>
+                                <div class="content">
+                                    <p>A description of your fourth project and what technologies you used.</p>
+                                    <div class="tags">
+                                        <span class="tag is-primary">HTML</span>
+                                        <span class="tag is-primary">CSS</span>
+                                        <span class="tag is-primary">JavaScript</span>
+                                        <span class="tag is-primary">Angular</span>
+                                        <span class="tag is-primary">TypeScript</span>
+                                        <span class="tag is-primary">SCSS</span>
+                                        <span class="tag is-primary">React</span>
+                                        <span class="tag is-primary">Node.js</span>
+                                        <span class="tag is-primary">MongoDB</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <footer class="card-footer">
+                                <a href="#" class="card-footer-item">View Project</a>
+                                <a href="#" class="card-footer-item">Source Code</a>
+                            </footer>
+                        </div>
+                    </div>
+                    <!-- Project 3 -->
+                    <div class="column is-12-mobile is-6-tablet is-4-desktop gsap-project-item" style="flex: 0 0 auto; width: 420px;" data-tech="HTML,CSS,JavaScript,Angular,TypeScript,SCSS,React,Node.js,MongoDB">
+                        <div class="card h-full">
+                            <div class="card-image">
+                                <figure class="image is-4by3">
+                                    <img src="img/project1-placeholder.jpg" alt="Project 3">
+                                </figure>
+                                <div class="card-image-overlay">
+                                    <div class="overlay-content">
+                                        <a href="#" class="button is-warning is-rounded">
+                                            <span class="icon">
+                                                <i class="fas fa-eye"></i>
+                                            </span>
+                                        </a>
+                                        <a href="#" class="button is-warning is-rounded !ml-2">
+                                            <span class="icon">
+                                                <i class="fab fa-github"></i>
+                                            </span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-content">
+                                <p class="title is-4">Project Three</p>
+                                <p class="subtitle is-6">Full Stack App</p>
+                                <div class="content">
+                                    <p>A description of your fourth project and what technologies you used.</p>
+                                    <div class="tags">
+                                        <span class="tag is-primary">HTML</span>
+                                        <span class="tag is-primary">CSS</span>
+                                        <span class="tag is-primary">JavaScript</span>
+                                        <span class="tag is-primary">Angular</span>
+                                        <span class="tag is-primary">TypeScript</span>
+                                        <span class="tag is-primary">SCSS</span>
+                                        <span class="tag is-primary">React</span>
+                                        <span class="tag is-primary">Node.js</span>
+                                        <span class="tag is-primary">MongoDB</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <footer class="card-footer">
+                                <a href="#" class="card-footer-item">View Project</a>
+                                <a href="#" class="card-footer-item">Source Code</a>
+                            </footer>
+                        </div>
+                    </div>
+                    <!-- Project 4 -->
+                    <div class="column is-12-mobile is-6-tablet is-4-desktop gsap-project-item" style="flex: 0 0 auto; width: 420px;" data-tech="HTML,CSS,JavaScript,Angular,TypeScript,SCSS,React,Node.js,MongoDB">
+                        <div class="card h-full">
+                            <div class="card-image">
+                                <figure class="image is-4by3">
+                                    <img src="img/project1-placeholder.jpg" alt="Project 4">
+                                </figure>
+                                <div class="card-image-overlay">
+                                    <div class="overlay-content">
+                                        <a href="#" class="button is-warning is-rounded">
+                                            <span class="icon">
+                                                <i class="fas fa-eye"></i>
+                                            </span>
+                                        </a>
+                                        <a href="#" class="button is-warning is-rounded !ml-2">
+                                            <span class="icon">
+                                                <i class="fab fa-github"></i>
+                                            </span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-content">
+                                <p class="title is-4">Project Four</p>
+                                <p class="subtitle is-6">Full Stack App</p>
+                                <div class="content">
+                                    <p>A description of your fourth project and what technologies you used.</p>
+                                    <div class="tags">
+                                        <span class="tag is-primary">HTML</span>
+                                        <span class="tag is-primary">CSS</span>
+                                        <span class="tag is-primary">JavaScript</span>
+                                        <span class="tag is-primary">Angular</span>
+                                        <span class="tag is-primary">TypeScript</span>
+                                        <span class="tag is-primary">SCSS</span>
+                                        <span class="tag is-primary">React</span>
+                                        <span class="tag is-primary">Node.js</span>
+                                        <span class="tag is-primary">MongoDB</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <footer class="card-footer">
+                                <a href="#" class="card-footer-item">View Project</a>
+                                <a href="#" class="card-footer-item">Source Code</a>
+                            </footer>
+                        </div>
+                    </div>
+                    <!-- Project 5 -->
+                    <div class="column is-12-mobile is-6-tablet is-4-desktop gsap-project-item" style="flex: 0 0 auto; width: 420px;" data-tech="HTML,CSS,JavaScript,Angular,TypeScript,SCSS,React,Node.js,MongoDB">
+                        <div class="card h-full">
+                            <div class="card-image">
+                                <figure class="image is-4by3">
+                                    <img src="img/project2-placeholder.jpg" alt="Project 5">
+                                </figure>
+                                <div class="card-image-overlay">
+                                    <div class="overlay-content">
+                                        <a href="#" class="button is-warning is-rounded">
+                                            <span class="icon">
+                                                <i class="fas fa-eye"></i>
+                                            </span>
+                                        </a>
+                                        <a href="#" class="button is-warning is-rounded !ml-2">
+                                            <span class="icon">
+                                                <i class="fab fa-github"></i>
+                                            </span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-content">
+                                <p class="title is-4">Project Five</p>
+                                <p class="subtitle is-6">Enterprise Solution</p>
+                                <div class="content">
+                                    <p>A description of your fifth project and what technologies you used.</p>
+                                    <div class="tags">
+                                        <span class="tag is-primary">HTML</span>
+                                        <span class="tag is-primary">CSS</span>
+                                        <span class="tag is-primary">JavaScript</span>
+                                        <span class="tag is-primary">Angular</span>
+                                        <span class="tag is-primary">TypeScript</span>
+                                        <span class="tag is-primary">SCSS</span>
+                                        <span class="tag is-primary">React</span>
+                                        <span class="tag is-primary">Node.js</span>
+                                        <span class="tag is-primary">MongoDB</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <footer class="card-footer">
+                                <a href="#" class="card-footer-item">View Project</a>
+                                <a href="#" class="card-footer-item">Source Code</a>
+                            </footer>
+                        </div>
+                    </div>
+                    <!-- Project 6 -->
+                    <div class="column is-12-mobile is-6-tablet is-4-desktop gsap-project-item" style="flex: 0 0 auto; width: 420px;" data-tech="HTML,CSS,JavaScript,Angular,TypeScript,SCSS,React,Node.js,MongoDB">
+                        <div class="card h-full">
+                            <div class="card-image">
+                                <figure class="image is-4by3">
+                                    <img src="img/project3-placeholder.jpg" alt="Project 6">
+                                </figure>
+                                <div class="card-image-overlay">
+                                    <div class="overlay-content">
+                                        <a href="#" class="button is-warning is-rounded">
+                                            <span class="icon">
+                                                <i class="fas fa-eye"></i>
+                                            </span>
+                                        </a>
+                                        <a href="#" class="button is-warning is-rounded !ml-2">
+                                            <span class="icon">
+                                                <i class="fab fa-github"></i>
+                                            </span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-content">
+                                <p class="title is-4">Project Six</p>
+                                <p class="subtitle is-6">Data Platform</p>
+                                <div class="content">
+                                    <p>A description of your sixth project and what technologies you used.</p>
+                                    <div class="tags">
+                                        <span class="tag is-primary">HTML</span>
+                                        <span class="tag is-primary">CSS</span>
+                                        <span class="tag is-primary">JavaScript</span>
+                                        <span class="tag is-primary">Angular</span>
+                                        <span class="tag is-primary">TypeScript</span>
+                                        <span class="tag is-primary">SCSS</span>
+                                        <span class="tag is-primary">React</span>
+                                        <span class="tag is-primary">Node.js</span>
+                                        <span class="tag is-primary">MongoDB</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <footer class="card-footer">
+                                <a href="#" class="card-footer-item">View Project</a>
+                                <a href="#" class="card-footer-item">Source Code</a>
+                            </footer>
+                        </div>
+                    </div>
+                    <!-- Project 7 -->
+                    <div class="column is-12-mobile is-6-tablet is-4-desktop gsap-project-item" style="flex: 0 0 auto; width: 420px;" data-tech="HTML,CSS,JavaScript,Angular,TypeScript,SCSS,React,Node.js,MongoDB">
+                        <div class="card h-full">
+                            <div class="card-image">
+                                <figure class="image is-4by3">
+                                    <img src="img/project1-placeholder.jpg" alt="Project 7">
+                                </figure>
+                                <div class="card-image-overlay">
+                                    <div class="overlay-content">
+                                        <a href="#" class="button is-warning is-rounded">
+                                            <span class="icon">
+                                                <i class="fas fa-eye"></i>
+                                            </span>
+                                        </a>
+                                        <a href="#" class="button is-warning is-rounded !ml-2">
+                                            <span class="icon">
+                                                <i class="fab fa-github"></i>
+                                            </span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-content">
+                                <p class="title is-4">Project Seven</p>
+                                <p class="subtitle is-6">Analytics Tool</p>
+                                <div class="content">
+                                    <p>A description of your seventh project and what technologies you used.</p>
+                                    <div class="tags">
+                                        <span class="tag is-primary">HTML</span>
+                                        <span class="tag is-primary">CSS</span>
+                                        <span class="tag is-primary">JavaScript</span>
+                                        <span class="tag is-primary">Angular</span>
+                                        <span class="tag is-primary">TypeScript</span>
+                                        <span class="tag is-primary">SCSS</span>
+                                        <span class="tag is-primary">React</span>
+                                        <span class="tag is-primary">Node.js</span>
+                                        <span class="tag is-primary">MongoDB</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <footer class="card-footer">
+                                <a href="#" class="card-footer-item">View Project</a>
+                                <a href="#" class="card-footer-item">Source Code</a>
+                            </footer>
+                        </div>
+                    </div>
+                    <!-- Project 8 -->
+                    <div class="column is-12-mobile is-6-tablet is-4-desktop gsap-project-item" style="flex: 0 0 auto; width: 420px;" data-tech="HTML,CSS,JavaScript,Angular,TypeScript,SCSS,React,Node.js,MongoDB">
+                        <div class="card h-full">
+                            <div class="card-image">
+                                <figure class="image is-4by3">
+                                    <img src="img/project2-placeholder.jpg" alt="Project 8">
+                                </figure>
+                                <div class="card-image-overlay">
+                                    <div class="overlay-content">
+                                        <a href="#" class="button is-warning is-rounded">
+                                            <span class="icon">
+                                                <i class="fas fa-eye"></i>
+                                            </span>
+                                        </a>
+                                        <a href="#" class="button is-warning is-rounded !ml-2">
+                                            <span class="icon">
+                                                <i class="fab fa-github"></i>
+                                            </span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-content">
+                                <p class="title is-4">Project Eight</p>
+                                <p class="subtitle is-6">Cloud Service</p>
+                                <div class="content">
+                                    <p>A description of your eighth project and what technologies you used.</p>
+                                    <div class="tags">
+                                        <span class="tag is-primary">HTML</span>
+                                        <span class="tag is-primary">CSS</span>
+                                        <span class="tag is-primary">JavaScript</span>
+                                        <span class="tag is-primary">Angular</span>
+                                        <span class="tag is-primary">TypeScript</span>
+                                        <span class="tag is-primary">SCSS</span>
+                                        <span class="tag is-primary">React</span>
+                                        <span class="tag is-primary">Node.js</span>
+                                        <span class="tag is-primary">MongoDB</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <footer class="card-footer">
+                                <a href="#" class="card-footer-item">View Project</a>
+                                <a href="#" class="card-footer-item">Source Code</a>
+                            </footer>
+                        </div>
+                    </div>
+                    <!-- Project 9-18 (Duplicates) -->
+                    <div class="column is-12-mobile is-6-tablet is-4-desktop gsap-project-item" style="flex: 0 0 auto; width: 420px;" data-tech="HTML,CSS,JavaScript,Angular,TypeScript,SCSS,React,Node.js,MongoDB">
+                        <div class="card h-full">
+                            <div class="card-image">
+                                <figure class="image is-4by3">
+                                    <img src="img/project1-placeholder.jpg" alt="Project 9">
+                                </figure>
+                                <div class="card-image-overlay">
+                                    <div class="overlay-content">
+                                        <a href="#" class="button is-warning is-rounded">
+                                            <span class="icon">
+                                                <i class="fas fa-eye"></i>
+                                            </span>
+                                        </a>
+                                        <a href="#" class="button is-warning is-rounded !ml-2">
+                                            <span class="icon">
+                                                <i class="fab fa-github"></i>
+                                            </span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-content">
+                                <p class="title is-4">Project Nine</p>
+                                <p class="subtitle is-6">Full Stack App</p>
+                                <div class="content">
+                                    <p>A description of your fourth project and what technologies you used.</p>
+                                    <div class="tags">
+                                        <span class="tag is-primary">HTML</span>
+                                        <span class="tag is-primary">CSS</span>
+                                        <span class="tag is-primary">JavaScript</span>
+                                        <span class="tag is-primary">Angular</span>
+                                        <span class="tag is-primary">TypeScript</span>
+                                        <span class="tag is-primary">SCSS</span>
+                                        <span class="tag is-primary">React</span>
+                                        <span class="tag is-primary">Node.js</span>
+                                        <span class="tag is-primary">MongoDB</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <footer class="card-footer">
+                                <a href="#" class="card-footer-item">View Project</a>
+                                <a href="#" class="card-footer-item">Source Code</a>
+                            </footer>
+                        </div>
+                    </div>
+                    <div class="column is-12-mobile is-6-tablet is-4-desktop gsap-project-item" style="flex: 0 0 auto; width: 420px;" data-tech="HTML,CSS,JavaScript,Angular,TypeScript,SCSS,React,Node.js,MongoDB">
+                        <div class="card h-full">
+                            <div class="card-image">
+                                <figure class="image is-4by3">
+                                    <img src="img/project1-placeholder.jpg" alt="Project 10">
+                                </figure>
+                                <div class="card-image-overlay">
+                                    <div class="overlay-content">
+                                        <a href="#" class="button is-warning is-rounded">
+                                            <span class="icon">
+                                                <i class="fas fa-eye"></i>
+                                            </span>
+                                        </a>
+                                        <a href="#" class="button is-warning is-rounded !ml-2">
+                                            <span class="icon">
+                                                <i class="fab fa-github"></i>
+                                            </span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-content">
+                                <p class="title is-4">Project Ten</p>
+                                <p class="subtitle is-6">Full Stack App</p>
+                                <div class="content">
+                                    <p>A description of your fourth project and what technologies you used.</p>
+                                    <div class="tags">
+                                        <span class="tag is-primary">HTML</span>
+                                        <span class="tag is-primary">CSS</span>
+                                        <span class="tag is-primary">JavaScript</span>
+                                        <span class="tag is-primary">Angular</span>
+                                        <span class="tag is-primary">TypeScript</span>
+                                        <span class="tag is-primary">SCSS</span>
+                                        <span class="tag is-primary">React</span>
+                                        <span class="tag is-primary">Node.js</span>
+                                        <span class="tag is-primary">MongoDB</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <footer class="card-footer">
+                                <a href="#" class="card-footer-item">View Project</a>
+                                <a href="#" class="card-footer-item">Source Code</a>
+                            </footer>
+                        </div>
+                    </div>
+                    <div class="column is-12-mobile is-6-tablet is-4-desktop gsap-project-item" style="flex: 0 0 auto; width: 420px;" data-tech="HTML,CSS,JavaScript,Angular,TypeScript,SCSS,React,Node.js,MongoDB">
+                        <div class="card h-full">
+                            <div class="card-image">
+                                <figure class="image is-4by3">
+                                    <img src="img/project1-placeholder.jpg" alt="Project 11">
+                                </figure>
+                                <div class="card-image-overlay">
+                                    <div class="overlay-content">
+                                        <a href="#" class="button is-warning is-rounded">
+                                            <span class="icon">
+                                                <i class="fas fa-eye"></i>
+                                            </span>
+                                        </a>
+                                        <a href="#" class="button is-warning is-rounded !ml-2">
+                                            <span class="icon">
+                                                <i class="fab fa-github"></i>
+                                            </span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-content">
+                                <p class="title is-4">Project Eleven</p>
+                                <p class="subtitle is-6">Full Stack App</p>
+                                <div class="content">
+                                    <p>A description of your fourth project and what technologies you used.</p>
+                                    <div class="tags">
+                                        <span class="tag is-primary">HTML</span>
+                                        <span class="tag is-primary">CSS</span>
+                                        <span class="tag is-primary">JavaScript</span>
+                                        <span class="tag is-primary">Angular</span>
+                                        <span class="tag is-primary">TypeScript</span>
+                                        <span class="tag is-primary">SCSS</span>
+                                        <span class="tag is-primary">React</span>
+                                        <span class="tag is-primary">Node.js</span>
+                                        <span class="tag is-primary">MongoDB</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <footer class="card-footer">
+                                <a href="#" class="card-footer-item">View Project</a>
+                                <a href="#" class="card-footer-item">Source Code</a>
+                            </footer>
+                        </div>
+                    </div>
+                    <div class="column is-12-mobile is-6-tablet is-4-desktop gsap-project-item" style="flex: 0 0 auto; width: 420px;" data-tech="HTML,CSS,JavaScript,Angular,TypeScript,SCSS,React,Node.js,MongoDB">
+                        <div class="card h-full">
+                            <div class="card-image">
+                                <figure class="image is-4by3">
+                                    <img src="img/project1-placeholder.jpg" alt="Project 12">
+                                </figure>
+                                <div class="card-image-overlay">
+                                    <div class="overlay-content">
+                                        <a href="#" class="button is-warning is-rounded">
+                                            <span class="icon">
+                                                <i class="fas fa-eye"></i>
+                                            </span>
+                                        </a>
+                                        <a href="#" class="button is-warning is-rounded !ml-2">
+                                            <span class="icon">
+                                                <i class="fab fa-github"></i>
+                                            </span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-content">
+                                <p class="title is-4">Project Twelve</p>
+                                <p class="subtitle is-6">Full Stack App</p>
+                                <div class="content">
+                                    <p>A description of your fourth project and what technologies you used.</p>
+                                    <div class="tags">
+                                        <span class="tag is-primary">HTML</span>
+                                        <span class="tag is-primary">CSS</span>
+                                        <span class="tag is-primary">JavaScript</span>
+                                        <span class="tag is-primary">Angular</span>
+                                        <span class="tag is-primary">TypeScript</span>
+                                        <span class="tag is-primary">SCSS</span>
+                                        <span class="tag is-primary">React</span>
+                                        <span class="tag is-primary">Node.js</span>
+                                        <span class="tag is-primary">MongoDB</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <footer class="card-footer">
+                                <a href="#" class="card-footer-item">View Project</a>
+                                <a href="#" class="card-footer-item">Source Code</a>
+                            </footer>
+                        </div>
+                    </div>
+                    <div class="column is-12-mobile is-6-tablet is-4-desktop gsap-project-item" style="flex: 0 0 auto; width: 420px;" data-tech="HTML,CSS,JavaScript,Angular,TypeScript,SCSS,React,Node.js,MongoDB">
+                        <div class="card h-full">
+                            <div class="card-image">
+                                <figure class="image is-4by3">
+                                    <img src="img/project1-placeholder.jpg" alt="Project 13">
+                                </figure>
+                                <div class="card-image-overlay">
+                                    <div class="overlay-content">
+                                        <a href="#" class="button is-warning is-rounded">
+                                            <span class="icon">
+                                                <i class="fas fa-eye"></i>
+                                            </span>
+                                        </a>
+                                        <a href="#" class="button is-warning is-rounded !ml-2">
+                                            <span class="icon">
+                                                <i class="fab fa-github"></i>
+                                            </span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-content">
+                                <p class="title is-4">Project Thirteen</p>
+                                <p class="subtitle is-6">Full Stack App</p>
+                                <div class="content">
+                                    <p>A description of your fourth project and what technologies you used.</p>
+                                    <div class="tags">
+                                        <span class="tag is-primary">HTML</span>
+                                        <span class="tag is-primary">CSS</span>
+                                        <span class="tag is-primary">JavaScript</span>
+                                        <span class="tag is-primary">Angular</span>
+                                        <span class="tag is-primary">TypeScript</span>
+                                        <span class="tag is-primary">SCSS</span>
+                                        <span class="tag is-primary">React</span>
+                                        <span class="tag is-primary">Node.js</span>
+                                        <span class="tag is-primary">MongoDB</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <footer class="card-footer">
+                                <a href="#" class="card-footer-item">View Project</a>
+                                <a href="#" class="card-footer-item">Source Code</a>
+                            </footer>
+                        </div>
+                    </div>
+                    <div class="column is-12-mobile is-6-tablet is-4-desktop gsap-project-item" style="flex: 0 0 auto; width: 420px;" data-tech="HTML,CSS,JavaScript,Angular,TypeScript,SCSS,React,Node.js,MongoDB">
+                        <div class="card h-full">
+                            <div class="card-image">
+                                <figure class="image is-4by3">
+                                    <img src="img/project1-placeholder.jpg" alt="Project 14">
+                                </figure>
+                                <div class="card-image-overlay">
+                                    <div class="overlay-content">
+                                        <a href="#" class="button is-warning is-rounded">
+                                            <span class="icon">
+                                                <i class="fas fa-eye"></i>
+                                            </span>
+                                        </a>
+                                        <a href="#" class="button is-warning is-rounded !ml-2">
+                                            <span class="icon">
+                                                <i class="fab fa-github"></i>
+                                            </span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-content">
+                                <p class="title is-4">Project Fourteen</p>
+                                <p class="subtitle is-6">Full Stack App</p>
+                                <div class="content">
+                                    <p>A description of your fourth project and what technologies you used.</p>
+                                    <div class="tags">
+                                        <span class="tag is-primary">HTML</span>
+                                        <span class="tag is-primary">CSS</span>
+                                        <span class="tag is-primary">JavaScript</span>
+                                        <span class="tag is-primary">Angular</span>
+                                        <span class="tag is-primary">TypeScript</span>
+                                        <span class="tag is-primary">SCSS</span>
+                                        <span class="tag is-primary">React</span>
+                                        <span class="tag is-primary">Node.js</span>
+                                        <span class="tag is-primary">MongoDB</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <footer class="card-footer">
+                                <a href="#" class="card-footer-item">View Project</a>
+                                <a href="#" class="card-footer-item">Source Code</a>
+                            </footer>
+                        </div>
+                    </div>
+                    <div class="column is-12-mobile is-6-tablet is-4-desktop gsap-project-item" style="flex: 0 0 auto; width: 420px;" data-tech="HTML,CSS,JavaScript,Angular,TypeScript,SCSS,React,Node.js,MongoDB">
+                        <div class="card h-full">
+                            <div class="card-image">
+                                <figure class="image is-4by3">
+                                    <img src="img/project1-placeholder.jpg" alt="Project 15">
+                                </figure>
+                                <div class="card-image-overlay">
+                                    <div class="overlay-content">
+                                        <a href="#" class="button is-warning is-rounded">
+                                            <span class="icon">
+                                                <i class="fas fa-eye"></i>
+                                            </span>
+                                        </a>
+                                        <a href="#" class="button is-warning is-rounded !ml-2">
+                                            <span class="icon">
+                                                <i class="fab fa-github"></i>
+                                            </span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-content">
+                                <p class="title is-4">Project Fifteen</p>
+                                <p class="subtitle is-6">Full Stack App</p>
+                                <div class="content">
+                                    <p>A description of your fourth project and what technologies you used.</p>
+                                    <div class="tags">
+                                        <span class="tag is-primary">HTML</span>
+                                        <span class="tag is-primary">CSS</span>
+                                        <span class="tag is-primary">JavaScript</span>
+                                        <span class="tag is-primary">Angular</span>
+                                        <span class="tag is-primary">TypeScript</span>
+                                        <span class="tag is-primary">SCSS</span>
+                                        <span class="tag is-primary">React</span>
+                                        <span class="tag is-primary">Node.js</span>
+                                        <span class="tag is-primary">MongoDB</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <footer class="card-footer">
+                                <a href="#" class="card-footer-item">View Project</a>
+                                <a href="#" class="card-footer-item">Source Code</a>
+                            </footer>
+                        </div>
+                    </div>
+                    <div class="column is-12-mobile is-6-tablet is-4-desktop gsap-project-item" style="flex: 0 0 auto; width: 420px;" data-tech="HTML,CSS,JavaScript,Angular,TypeScript,SCSS,React,Node.js,MongoDB">
+                        <div class="card h-full">
+                            <div class="card-image">
+                                <figure class="image is-4by3">
+                                    <img src="img/project1-placeholder.jpg" alt="Project 16">
+                                </figure>
+                                <div class="card-image-overlay">
+                                    <div class="overlay-content">
+                                        <a href="#" class="button is-warning is-rounded">
+                                            <span class="icon">
+                                                <i class="fas fa-eye"></i>
+                                            </span>
+                                        </a>
+                                        <a href="#" class="button is-warning is-rounded !ml-2">
+                                            <span class="icon">
+                                                <i class="fab fa-github"></i>
+                                            </span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-content">
+                                <p class="title is-4">Project Sixteen</p>
+                                <p class="subtitle is-6">Full Stack App</p>
+                                <div class="content">
+                                    <p>A description of your fourth project and what technologies you used.</p>
+                                    <div class="tags">
+                                        <span class="tag is-primary">HTML</span>
+                                        <span class="tag is-primary">CSS</span>
+                                        <span class="tag is-primary">JavaScript</span>
+                                        <span class="tag is-primary">Angular</span>
+                                        <span class="tag is-primary">TypeScript</span>
+                                        <span class="tag is-primary">SCSS</span>
+                                        <span class="tag is-primary">React</span>
+                                        <span class="tag is-primary">Node.js</span>
+                                        <span class="tag is-primary">MongoDB</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <footer class="card-footer">
+                                <a href="#" class="card-footer-item">View Project</a>
+                                <a href="#" class="card-footer-item">Source Code</a>
+                            </footer>
+                        </div>
+                    </div>
+                    <div class="column is-12-mobile is-6-tablet is-4-desktop gsap-project-item" style="flex: 0 0 auto; width: 420px;" data-tech="HTML,CSS,JavaScript,Angular,TypeScript,SCSS,React,Node.js,MongoDB">
+                        <div class="card h-full">
+                            <div class="card-image">
+                                <figure class="image is-4by3">
+                                    <img src="img/project1-placeholder.jpg" alt="Project 17">
+                                </figure>
+                                <div class="card-image-overlay">
+                                    <div class="overlay-content">
+                                        <a href="#" class="button is-warning is-rounded">
+                                            <span class="icon">
+                                                <i class="fas fa-eye"></i>
+                                            </span>
+                                        </a>
+                                        <a href="#" class="button is-warning is-rounded !ml-2">
+                                            <span class="icon">
+                                                <i class="fab fa-github"></i>
+                                            </span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-content">
+                                <p class="title is-4">Project Seventeen</p>
+                                <p class="subtitle is-6">Full Stack App</p>
+                                <div class="content">
+                                    <p>A description of your fourth project and what technologies you used.</p>
+                                    <div class="tags">
+                                        <span class="tag is-primary">HTML</span>
+                                        <span class="tag is-primary">CSS</span>
+                                        <span class="tag is-primary">JavaScript</span>
+                                        <span class="tag is-primary">Angular</span>
+                                        <span class="tag is-primary">TypeScript</span>
+                                        <span class="tag is-primary">SCSS</span>
+                                        <span class="tag is-primary">React</span>
+                                        <span class="tag is-primary">Node.js</span>
+                                        <span class="tag is-primary">MongoDB</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <footer class="card-footer">
+                                <a href="#" class="card-footer-item">View Project</a>
+                                <a href="#" class="card-footer-item">Source Code</a>
+                            </footer>
+                        </div>
+                    </div>
+                    <div class="column is-12-mobile is-6-tablet is-4-desktop gsap-project-item" style="flex: 0 0 auto; width: 420px;" data-tech="HTML,CSS,JavaScript,Angular,TypeScript,SCSS,React,Node.js,MongoDB">
+                        <div class="card h-full">
+                            <div class="card-image">
+                                <figure class="image is-4by3">
+                                    <img src="img/project1-placeholder.jpg" alt="Project 18">
+                                </figure>
+                                <div class="card-image-overlay">
+                                    <div class="overlay-content">
+                                        <a href="#" class="button is-warning is-rounded">
+                                            <span class="icon">
+                                                <i class="fas fa-eye"></i>
+                                            </span>
+                                        </a>
+                                        <a href="#" class="button is-warning is-rounded !ml-2">
+                                            <span class="icon">
+                                                <i class="fab fa-github"></i>
+                                            </span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-content">
+                                <p class="title is-4">Project Eighteen</p>
+                                <p class="subtitle is-6">Full Stack App</p>
+                                <div class="content">
+                                    <p>A description of your fourth project and what technologies you used.</p>
+                                    <div class="tags">
+                                        <span class="tag is-primary">HTML</span>
+                                        <span class="tag is-primary">CSS</span>
+                                        <span class="tag is-primary">JavaScript</span>
+                                        <span class="tag is-primary">Angular</span>
+                                        <span class="tag is-primary">TypeScript</span>
+                                        <span class="tag is-primary">SCSS</span>
+                                        <span class="tag is-primary">React</span>
+                                        <span class="tag is-primary">Node.js</span>
+                                        <span class="tag is-primary">MongoDB</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <footer class="card-footer">
+                                <a href="#" class="card-footer-item">View Project</a>
+                                <a href="#" class="card-footer-item">Source Code</a>
+                            </footer>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section has-background-primary-light">
+        <div class="container">
+            <h2 class="title is-2 !mb-6 gsap-fade-in">
+                Get in  <span class="text-accent">Touch</span>
+              </h2>
+            <div class="columns is-centered">
+                <div class="column is-8-tablet is-6-desktop">
+                    <div class="box p-6 gsap-slide-up">
+                        <form id="contact-form">
+                            <div class="field">
+                                <label class="label">Name</label>
+                                <div class="control has-icons-left">
+                                    <input class="input" type="text" placeholder="Your Name" name="name" required>
+                                    <span class="icon is-small is-left">
+                                        <i class="fas fa-user"></i>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="field">
+                                <label class="label">Email</label>
+                                <div class="control has-icons-left">
+                                    <input class="input" type="email" placeholder="Your Email" name="email" required>
+                                    <span class="icon is-small is-left">
+                                        <i class="fas fa-envelope"></i>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="field">
+                                <label class="label">Subject</label>
+                                <div class="control has-icons-left">
+                                    <input class="input" type="text" placeholder="Subject" name="subject" required>
+                                    <span class="icon is-small is-left">
+                                        <i class="fas fa-heading"></i>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="field">
+                                <label class="label">Message</label>
+                                <div class="control">
+                                    <textarea class="textarea" placeholder="Your Message" rows="5" name="message" required></textarea>
+                                </div>
+                            </div>
+                            <div class="field">
+                                <div class="control">
+                                    <button class="button is-primary is-fullwidth" type="submit">
+                                        <span class="icon mr-2">
+                                            <i class="fas fa-paper-plane"></i>
+                                        </span>
+                                        <span><b>Send Message</b></span>
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                        <div id="form-message" style="display:none; margin-top:1rem;"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="columns !mt-6">
+                <div class="column is-12">
+                    <div class="has-text-centered gsap-fade-in-delay-1">
+                        <div class="social-links">
+                            <a href="yashrajghanvat1475.github.io/Portfolio-Website--/www.linkedin.com/in/yashraj-ghanvat-981985269/" class="button is-primary is-rounded !mx-2 social-button" aria-label="LinkedIn">
+                                <span class="icon">
+                                    <i class="fab fa-linkedin-in"></i>
+                                </span>
+                                <span class="social-text"><b>LinkedIn</b></span>
+                            </a>
+                            <a href="https://github.com/YashrajGhanvat1475" class="button is-primary is-rounded !mx-2 social-button" aria-label="GitHub">
+                                <span class="icon">
+                                    <i class="fab fa-github"></i>
+                                </span>
+                                <span class="social-text"><b>GitHub</b></span>
+                            </a>
+                            <a href="#" class="button is-primary is-rounded !mx-2 social-button" aria-label="Twitter">
+                                <span class="icon">
+                                    <i class="fab fa-twitter"></i>
+                                </span>
+                                <span class="social-text"><b>Twitter</b></span>
+                            </a>
+                            <a href="mailto:ghanvatyashraj@gmail.com" class="button is-primary is-rounded !mx-2 social-button" aria-label="Email">
+                                <span class="icon">
+                                    <i class="fas fa-envelope"></i>
+                                </span>
+                                <span class="social-text"><b>Email</b></span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="content has-text-centered">
+            <p>
+                <strong>My<span class="text-accent">Portfolio Website</span></strong> &copy; <span id="current-year">2025</span>.<br> ghanvatyashraj@gmail.com All rights reserved.<br><small>Created with <i class="fas fa-heart text-accent"></i> using Tailwind CSS, Bulma, and GSAP</small>
+            </p>
+        </div>
+    </footer>
+
+    <!-- Custom JS -->
+    <script src="js/main.js"></script>
+    
+    <!-- SMTP.js -->
+    <script src="https://smtpjs.com/v3/smtp.js"></script>
+    <script>
+    document.getElementById('contact-form').addEventListener('submit', function(e) {
+        e.preventDefault();
+        var form = e.target;
+        var name = form.name.value;
+        var email = form.email.value;
+        var subject = form.subject.value;
+        var message = form.message.value;
+        var formMessage = document.getElementById('form-message');
+        
+        // Show loading state
+        var submitButton = form.querySelector('button[type="submit"]');
+        var originalButtonText = submitButton.innerHTML;
+        submitButton.disabled = true;
+        submitButton.innerHTML = '<span class="icon"><i class="fas fa-spinner fa-spin"></i></span><span><b>Sending...</b></span>';
+        
+        formMessage.style.display = 'none';
+        formMessage.innerHTML = '';
+
+        // Configure SMTP.js
+        const smtpConfig = {
+            SecureToken: "YOUR_SECURE_TOKEN", // You'll need to replace this with your actual token
+            To: 'ghanvatyashraj05@gmail.com',
+            From: "ghanvatyashraj05@gmail.com", // Use your own email as the sender
+            Subject: `Portfolio Contact: ${subject}`,
+            Body: `
+                <h2>New Contact Form Submission</h2>
+                <p><strong>Name:</strong> ${name}</p>
+                <p><strong>Email:</strong> ${email}</p>
+                <p><strong>Subject:</strong> ${subject}</p>
+                <p><strong>Message:</strong></p>
+                <p>${message}</p>
+            `
+        };
+
+        // Send email with error handling
+        Email.send(smtpConfig)
+            .then(function(response) {
+                if (response === 'OK') {
+                    formMessage.style.display = 'block';
+                    formMessage.className = 'notification is-success';
+                    formMessage.innerHTML = '<p class="has-text-centered">Thank you! Your message has been sent successfully.</p>';
+                    form.reset();
+                } else {
+                    throw new Error('Server response was not OK');
+                }
+            })
+            .catch(function(error) {
+                formMessage.style.display = 'block';
+                formMessage.className = 'notification is-danger';
+                formMessage.innerHTML = '<p class="has-text-centered">Sorry, there was an error sending your message. Please try again later or contact directly via email.</p>';
+                console.error('SMTP error:', error);
+            })
+            .finally(function() {
+                // Reset button state
+                submitButton.disabled = false;
+                submitButton.innerHTML = originalButtonText;
+            });
+    });
+    </script>
+    <script>
+    document.querySelector('.navbar-burger').addEventListener('click', function() {
+      document.getElementById('navbarMenu').classList.toggle('is-active');
+    });
+
+    // Add scroll spy functionality
+    document.addEventListener('DOMContentLoaded', function() {
+        // Get all sections that have an ID defined
+        const sections = document.querySelectorAll("section[id]");
+        
+        // Add an event listener listening for scroll
+        window.addEventListener("scroll", navHighlighter);
+        
+        function navHighlighter() {
+            // Get current scroll position
+            let scrollY = window.pageYOffset;
+            
+            // Now we loop through sections to get height, top and ID values for each
+            sections.forEach(current => {
+                const sectionHeight = current.offsetHeight;
+                const sectionTop = current.offsetTop - 100; // Adjust offset for fixed header
+                const sectionId = current.getAttribute("id");
+                
+                // Check if we've scrolled to the section
+                if (scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
+                    // Remove active class from all nav items
+                    document.querySelectorAll(".navbar-menu .navbar-item").forEach(a => {
+                        a.classList.remove("is-active");
+                    });
+                    
+                    // Add active class to corresponding nav item
+                    document.querySelector(`.navbar-menu .navbar-item[href*=${sectionId}]`)?.classList.add("is-active");
+                }
+            });
+        }
+
+        // Initial check for active section
+        navHighlighter();
+    });
+    </script>
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        if (window.gsap) {
+            gsap.from('.skill-tag', {
+                opacity: 0,
+                y: -30,
+                duration: 1,
+                ease: 'power2.out',
+                delay: 0.2
+            });
+        }
+    });
+    </script>
+    <script>
+    gsap.to('.title.is-2', {
+        scrollTrigger: {
+            trigger: '.title.is-2',
+            start: 'top center',
+            end: 'bottom top',
+            scrub: true
+        },
+        opacity: 0
+    });
+    </script>
+</body>
+</html> 
+ritten_file>
